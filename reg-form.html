@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Hello {{$ctrl.newMember.firstName || 'New Member'}}</h3>
+        </div>
+        <div class="panel-body">
+            <form ng-submit="$ctrl.addMember($ctrl.newMember)" class="form">
+                <fieldset>
+                    <div class="form-group">
+                        <label for="first-name">First Name:</label>
+                        <input type="text" class="form-control" ng-model="$ctrl.newMember.firstName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name:</label>
+                        <input type="text" class="form-control" ng-model="$ctrl.newMember.lastName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" ng-model="$ctrl.newMember.email" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="tel" class="form-control" ng-model="$ctrl.newMember.phone" />
+                    </div>
+                </fieldset>
+
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4>Dependents</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="btn-group">
+                            <button class="btn btn-primary" ng-click="$ctrl.showDependentForm = !$ctrl.showDependentForm" type="button">{{$ctrl.showDependentForm ? 'Hide Form' : 'Add Dependent'}}</button>
+                        </div>
+
+                        <div ng-show="$ctrl.showDependentForm">
+                            <div class="form-group">
+                                <label for="first-name">First Name:</label>
+                                <input type="text" class="form-control" ng-model="$ctrl.newDependent.firstName" />
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Last Name:</label>
+                                <input type="text" class="form-control" ng-model="$ctrl.newDependent.lastName" />
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of Birth:</label>
+                                <input type="date" class="form-control" ng-model="$ctrl.newDependent.dob" />
+                            </div>
+                            <div class="btn-group">
+                                <button class="btn btn-primary" ng-click="$ctrl.addDependent($ctrl.newDependent)" type="button">Confirm Dependent</button>
+                                <button class="btn btn-danger" type="button" ng-click="$ctrl.newDependent = ''">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="dependent in $ctrl.newMember.dependents">
+                            {{dependent.firstName}} {{dependent.lastName}} <span class="badge">{{dependent.dob | date}}</span>
+                        </li>
+                    </ul>
+                    
+
+
+
+                    <div class="btn-group">
+                        <button class="btn btn-primary" type="submit">Add Member</button>
+                        <button class="btn btn-danger" type="reset">Never Mind</button>
+                    </div>
+
+            </form>
+            </div>
+        </div>
+    </div>
